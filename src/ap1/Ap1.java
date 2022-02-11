@@ -19,8 +19,8 @@ public class Ap1 extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle("Coriolano MotoVendas");
         stage.show();
-        stage.setTitle("Programa Odair");
     }
 
     /**

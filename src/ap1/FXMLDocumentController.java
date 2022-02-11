@@ -38,7 +38,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
-    
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+
     @FXML
     private void handleCadCliente(ActionEvent event) throws IOException {
         AnchorPane cadCliente = (AnchorPane) FXMLLoader.load(getClass().getResource("cadastrosView/FXMLCadCliente.fxml"));
@@ -50,10 +55,13 @@ public class FXMLDocumentController implements Initializable {
         AnchorPane cadMoto = (AnchorPane) FXMLLoader.load(getClass().getResource("cadastrosView/FXMLCadMoto.fxml"));
         anchorPane.getChildren().setAll(cadMoto);
     }
+
+    @FXML
+    private void handleNovaVenda(ActionEvent event) throws IOException {
+        AnchorPane cadMoto = (AnchorPane) FXMLLoader.load(getClass().getResource("vendasView/FXMLNovaVenda.fxml"));
+        anchorPane.getChildren().setAll(cadMoto);
+    }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+
     
 }

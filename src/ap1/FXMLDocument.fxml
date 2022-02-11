@@ -13,7 +13,7 @@
             <Menu mnemonicParsing="false" text="Cadastros">
                <items>
                   <MenuItem fx:id="cadCliente" mnemonicParsing="false" onAction="#handleCadCliente" text="Cliente" />
-                  <MenuItem fx:id="cadMoto" mnemonicParsing="false" text="Motocicleta" />
+                  <MenuItem fx:id="cadMoto" mnemonicParsing="false" onAction="#handleCadMoto" text="Motocicleta" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Vendas">

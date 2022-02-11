@@ -44,6 +44,12 @@ public class FXMLDocumentController implements Initializable {
         AnchorPane cadCliente = (AnchorPane) FXMLLoader.load(getClass().getResource("cadastrosView/FXMLCadCliente.fxml"));
         anchorPane.getChildren().setAll(cadCliente);
     }
+
+    @FXML
+    private void handleCadMoto(ActionEvent event) throws IOException {
+        AnchorPane cadMoto = (AnchorPane) FXMLLoader.load(getClass().getResource("cadastrosView/FXMLCadMoto.fxml"));
+        anchorPane.getChildren().setAll(cadMoto);
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

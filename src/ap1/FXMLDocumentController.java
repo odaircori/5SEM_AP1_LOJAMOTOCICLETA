@@ -61,6 +61,12 @@ public class FXMLDocumentController implements Initializable {
         AnchorPane cadMoto = (AnchorPane) FXMLLoader.load(getClass().getResource("vendasView/FXMLNovaVenda.fxml"));
         anchorPane.getChildren().setAll(cadMoto);
     }
+
+    @FXML
+    private void handleListaVendas(ActionEvent event) throws IOException {
+        AnchorPane cadMoto = (AnchorPane) FXMLLoader.load(getClass().getResource("vendasView/FXMLListaVendas.fxml"));
+        anchorPane.getChildren().setAll(cadMoto);
+    }
     
 
     

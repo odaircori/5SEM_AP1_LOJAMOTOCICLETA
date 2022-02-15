@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="463.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ap1.vendasControllers.FXMLListaVendasController">
+    <children>
+        <Label layoutX="299.0" layoutY="28.0" text="Vendas Realizadas">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+      <TableView fx:id="tableListaVendas" layoutX="167.0" layoutY="115.0" prefHeight="218.0" prefWidth="436.0">
+        <columns>
+          <TableColumn fx:id="nomeCliente" prefWidth="75.0" text="Cliente" />
+          <TableColumn fx:id="motocicleta" prefWidth="75.0" text="Motocicleta" />
+            <TableColumn fx:id="valorVenda" prefWidth="75.0" text="Valor" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+    </children>
+</AnchorPane>

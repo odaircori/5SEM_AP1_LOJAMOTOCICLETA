@@ -6,13 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.*;
 
-public class FXMLNovaVendaController {
+public class FXMLNovaVendaController implements Initializable {
 
     @FXML
     private ComboBox<Cliente> comboCliente;
@@ -35,8 +36,8 @@ public class FXMLNovaVendaController {
     @FXML
     private TextField valor;
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         carregaClientes();
         carregaMotocicletas();
     }

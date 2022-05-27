@@ -1,7 +1,8 @@
 package ap1.vendasControllers;
 
-import ap1.modelos.Cliente;
+import ap1.modelos.ClienteModel;
 import ap1.modelos.Motocicleta;
+import database.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,22 +12,24 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.time.LocalDate;
+import java.sql.SQLException;
 import java.util.*;
 
 public class FXMLNovaVendaController implements Initializable {
 
+    private Database conDatabase = new Database();
+
     @FXML
-    private ComboBox<Cliente> comboCliente;
+    private ComboBox<ClienteModel> comboCliente;
 
     @FXML
     private ComboBox<Motocicleta> comboMotocicleta;
 
     @FXML
-    private List<Cliente> listClientes = new ArrayList<>();
+    private List<ClienteModel> listClientes = new ArrayList<>();
 
     @FXML
-    private ObservableList<Cliente> obsListClientes;
+    private ObservableList<ClienteModel> obsListClientes;
 
     @FXML
     private List<Motocicleta> listMotocicletas = new ArrayList<>();
@@ -39,7 +42,11 @@ public class FXMLNovaVendaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        carregaClientes();
+        try {
+            carregaClientes();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         carregaMotocicletas();
     }
 
@@ -56,10 +63,10 @@ public class FXMLNovaVendaController implements Initializable {
     }
 
     @FXML
-    private void carregaClientes(){
-        Cliente cliente1 = new Cliente("Odair", "0000000", LocalDate.of(1987,2,13), 10000.0);
+    private void carregaClientes() throws SQLException {
+        List<ClienteModel> clientes = conDatabase.buscaClientes();
 
-        listClientes.add(cliente1);
+        listClientes.addAll(clientes);
         obsListClientes = FXCollections.observableArrayList(listClientes);
 
         comboCliente.setItems(obsListClientes);

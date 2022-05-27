@@ -11,6 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
 
 public class FXMLNovaVendaController implements Initializable {
@@ -56,7 +57,7 @@ public class FXMLNovaVendaController implements Initializable {
 
     @FXML
     private void carregaClientes(){
-        Cliente cliente1 = new Cliente("Odair", "0000000", new Date(1987,2,13), 10000);
+        Cliente cliente1 = new Cliente("Odair", "0000000", LocalDate.of(1987,2,13), 10000.0);
 
         listClientes.add(cliente1);
         obsListClientes = FXCollections.observableArrayList(listClientes);

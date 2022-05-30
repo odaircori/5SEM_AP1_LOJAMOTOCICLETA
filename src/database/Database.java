@@ -39,16 +39,6 @@ public class Database implements IDatabase {
     }
 
     @Override
-    public void alterarCliente(Cliente cliente) throws SQLException {
-
-    }
-
-    @Override
-    public void deletarCliente(Cliente cliente) throws SQLException {
-
-    }
-
-    @Override
     public List<ClienteModel> buscaClientes() throws SQLException {
         List<ClienteModel> listaClientes = new ArrayList<>();
 
@@ -93,16 +83,6 @@ public class Database implements IDatabase {
         ps.setDouble(4, valor);
         ps.execute();
         ps.close();
-    }
-
-    @Override
-    public void atualizarMoto(Motocicleta motocicleta) throws SQLException {
-
-    }
-
-    @Override
-    public void deletarMoto(Motocicleta motocicleta) throws SQLException {
-
     }
 
     @Override

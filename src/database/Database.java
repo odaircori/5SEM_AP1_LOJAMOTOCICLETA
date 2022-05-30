@@ -87,6 +87,18 @@ public class Database implements IDatabase {
     }
 
     @Override
+    public void novaVenda(UUID clienteId, UUID motocicletaId, Double valor) throws SQLException {
+        String sql = "INSERT INTO vendas VALUES (?, ?, ?, ?)";
+        PreparedStatement ps = databaseLink.prepareStatement(sql);
+        ps.setString(1, UUID.randomUUID().toString());
+        ps.setString(2, clienteId.toString());
+        ps.setString(3, motocicletaId.toString());
+        ps.setDouble(4, valor);
+        ps.execute();
+        ps.close();
+    }
+
+    @Override
     public void atualizarMoto(Motocicleta motocicleta) throws SQLException {
 
     }

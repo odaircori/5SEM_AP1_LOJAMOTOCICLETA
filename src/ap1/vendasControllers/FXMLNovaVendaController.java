@@ -59,7 +59,16 @@ public class FXMLNovaVendaController implements Initializable {
 
     @FXML
     private void salvarNovaVenda(ActionEvent event) {
-        // TODO
+        try {
+            UUID clienteId = comboCliente.getValue().id;
+            UUID motoId = comboMotocicleta.getValue().id ;
+            Double valor = Double.parseDouble(this.valor.getText());
+
+            conDatabase.novaVenda(clienteId, motoId, valor);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

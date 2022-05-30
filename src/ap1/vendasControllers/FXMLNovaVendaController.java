@@ -1,7 +1,7 @@
 package ap1.vendasControllers;
 
 import ap1.modelos.ClienteModel;
-import ap1.modelos.Motocicleta;
+import ap1.modelos.MotoModel;
 import database.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +23,7 @@ public class FXMLNovaVendaController implements Initializable {
     private ComboBox<ClienteModel> comboCliente;
 
     @FXML
-    private ComboBox<Motocicleta> comboMotocicleta;
+    private ComboBox<MotoModel> comboMotocicleta;
 
     @FXML
     private List<ClienteModel> listClientes = new ArrayList<>();
@@ -32,10 +32,10 @@ public class FXMLNovaVendaController implements Initializable {
     private ObservableList<ClienteModel> obsListClientes;
 
     @FXML
-    private List<Motocicleta> listMotocicletas = new ArrayList<>();
+    private List<MotoModel> listMotocicletas = new ArrayList<>();
 
     @FXML
-    private ObservableList<Motocicleta> obsListMotocicletas;
+    private ObservableList<MotoModel> obsListMotocicletas;
 
     @FXML
     private TextField valor;
@@ -44,10 +44,10 @@ public class FXMLNovaVendaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             carregaClientes();
+            carregaMotocicletas();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        carregaMotocicletas();
     }
 
     @FXML
@@ -73,14 +73,12 @@ public class FXMLNovaVendaController implements Initializable {
     }
 
     @FXML
-    private void carregaMotocicletas(){
-        Motocicleta moto1 = new Motocicleta("Yamaha", "MT09", 2021, 10000);
+    private void carregaMotocicletas() throws SQLException {
+        List<MotoModel> motos = conDatabase.buscarMotos();
 
-        listMotocicletas.add(moto1);
+        listMotocicletas.addAll(motos);
         obsListMotocicletas = FXCollections.observableArrayList(listMotocicletas);
 
         comboMotocicleta.setItems(obsListMotocicletas);
-
-
     }
 }

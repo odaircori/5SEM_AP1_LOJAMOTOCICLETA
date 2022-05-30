@@ -2,6 +2,7 @@ package database;
 
 import ap1.modelos.ClienteModel;
 import ap1.modelos.Cliente;
+import ap1.modelos.MotoModel;
 import ap1.modelos.Motocicleta;
 
 import java.sql.*;
@@ -52,7 +53,7 @@ public class Database implements IDatabase {
 
     @Override
     public List<ClienteModel> buscaClientes() throws SQLException {
-        List<ClienteModel> listaClientes = new ArrayList<ClienteModel>();
+        List<ClienteModel> listaClientes = new ArrayList<>();
 
         String sql = "SELECT id, nome FROM clientes";
         PreparedStatement ps = databaseLink.prepareStatement(sql);
@@ -74,7 +75,15 @@ public class Database implements IDatabase {
 
     @Override
     public void inserirMoto(Motocicleta motocicleta) throws SQLException {
-
+        String sql = "INSERT INTO motocicletas VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement ps = databaseLink.prepareStatement(sql);
+        ps.setString(1, motocicleta.getId().toString());
+        ps.setString(2, motocicleta.getFabricante());
+        ps.setString(3, motocicleta.getModelo());
+        ps.setInt(4, motocicleta.getAno());
+        ps.setDouble(5, motocicleta.getValor());
+        ps.execute();
+        ps.close();
     }
 
     @Override
@@ -85,5 +94,29 @@ public class Database implements IDatabase {
     @Override
     public void deletarMoto(Motocicleta motocicleta) throws SQLException {
 
+    }
+
+    @Override
+    public List<MotoModel> buscarMotos() throws SQLException {
+        List<MotoModel> listaMotos = new ArrayList<>();
+
+        String sql = "SELECT id, fabricante, modelo, ano FROM motocicletas";
+        PreparedStatement ps = databaseLink.prepareStatement(sql);
+        ResultSet result = ps.executeQuery();
+
+        while (result.next()){
+            MotoModel motoModel = new MotoModel();
+            motoModel.id = UUID.fromString(result.getString("id"));
+            motoModel.fabricante = result.getString("fabricante");
+            motoModel.modelo = result.getString("modelo");
+            motoModel.ano = result.getInt("ano");
+
+            listaMotos.add(motoModel);
+        }
+
+        result.close();
+        ps.close();
+
+        return listaMotos;
     }
 }

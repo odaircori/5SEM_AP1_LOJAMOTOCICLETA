@@ -13,7 +13,7 @@
         </Label>
       <TableView fx:id="tableListaVendas" layoutX="167.0" layoutY="115.0" prefHeight="218.0" prefWidth="436.0">
         <columns>
-          <TableColumn fx:id="nomeCliente" prefWidth="75.0" text="Cliente" />
+          <TableColumn fx:id="cliente" prefWidth="75.0" text="Cliente" />
           <TableColumn fx:id="motocicleta" prefWidth="75.0" text="Motocicleta" />
             <TableColumn fx:id="valorVenda" prefWidth="75.0" text="Valor" />
         </columns>

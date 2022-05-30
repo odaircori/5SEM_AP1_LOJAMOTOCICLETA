@@ -1,43 +1,53 @@
 package ap1.vendasControllers;
 
-import ap1.modelos.Vendas;
+import ap1.modelos.*;
+import database.Database;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.*;
 
 public class FXMLListaVendasController implements Initializable {
+    private Database conDatabase = new Database();
 
     @FXML
-    private TableView<Vendas> tableListaVendas;
+    private TableView<VendaModel> tableListaVendas;
 
     @FXML
-    private TableColumn<Vendas, String> nomeCliente;
+    private TableColumn<VendaModel, String> cliente;
 
     @FXML
-    private TableColumn<Vendas, String> motocicleta;
+    private TableColumn<VendaModel, String> motocicleta;
 
     @FXML
-    private TableColumn<Vendas, Integer> valorVenda;
+    private TableColumn<VendaModel, Double> valorVenda;
 
-    private ObservableList<Vendas> obsVendas;
+    private ObservableList<VendaModel> obsVendas;
 
-    private List<Vendas> vendas = new ArrayList();
+    private List<VendaModel> vendas = new ArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        carregaListaVendas();
+        try {
+            carregaListaVendas();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    public void carregaListaVendas() {
-        nomeCliente.setCellValueFactory(
+    public void carregaListaVendas() throws SQLException {
+        List<VendaModel> listaVendas = conDatabase.buscarVendas();
+
+        cliente.setCellValueFactory(
                 new PropertyValueFactory<>("cliente")
         );
+
         motocicleta.setCellValueFactory(
                 new PropertyValueFactory<>("motocicleta")
         );
@@ -45,10 +55,7 @@ public class FXMLListaVendasController implements Initializable {
                 new PropertyValueFactory<>("valorVenda")
         );
 
-        Vendas venda1 = new Vendas("Odair","MT09",20000);
-        Vendas venda2 = new Vendas("João","XJ6",25000);
-        vendas.add(venda1);
-        vendas.add(venda2);
+        vendas.addAll(listaVendas);
 
         obsVendas = FXCollections.observableArrayList(vendas);
         tableListaVendas.setItems(obsVendas);

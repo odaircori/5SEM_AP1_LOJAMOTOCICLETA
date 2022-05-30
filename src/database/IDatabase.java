@@ -1,9 +1,6 @@
 package database;
 
-import ap1.modelos.ClienteModel;
-import ap1.modelos.Cliente;
-import ap1.modelos.MotoModel;
-import ap1.modelos.Motocicleta;
+import ap1.modelos.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,6 +13,7 @@ public interface IDatabase {
     public void deletarCliente(Cliente cliente) throws SQLException;
     public List<ClienteModel> buscaClientes() throws  SQLException;
     public List<MotoModel> buscarMotos() throws  SQLException;
+    public List<VendaModel> buscarVendas() throws  SQLException;
     public void inserirMoto(Motocicleta motocicleta) throws SQLException;
     public void novaVenda(UUID cliente, UUID motocicleta, Double valor) throws SQLException;
     public void atualizarMoto(Motocicleta motocicleta) throws SQLException;
